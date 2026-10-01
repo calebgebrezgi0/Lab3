@@ -8,6 +8,7 @@ Presents 4 files and allows a user to pick one to analyze.
 from pathlib import Path
 import string
 
+
 class WordAnalyzer:
     def __init__(self, filepath):
         self._filepath = Path(filepath)
@@ -17,6 +18,7 @@ class WordAnalyzer:
         try:
             if not self._filepath.exists():
                 raise FileNotFoundError
+
             table = str.maketrans("", "", string.punctuation)
             with self._filepath.open(encoding="utf-8") as file:
                 for line in file:
@@ -32,3 +34,12 @@ class WordAnalyzer:
     def print_report(self):
         for word in sorted(self._frequencies.keys()):
             print(f"{word:<10} :: {self._frequencies[word]}")
+
+
+def main():
+    files = {
+        "1": Path("princess_mars.txt"),
+        "2": Path("Tarzan.txt"),
+        "3": Path("treasure_island.txt"),
+        "4": Path("monte_cristo.txt"),
+    }
