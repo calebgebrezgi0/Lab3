@@ -24,5 +24,7 @@ class WordAnalyzer:
                     line = line.lower()
                     for word in line.split():
                         self._frequencies[word] = self._frequencies.get(word, 0) + 1
+            return True
         except FileNotFoundError:
-            print(f"File not found: {self._filepath}")
+            print(f"Error: '{self._filepath}' was not found.")
+            return False
