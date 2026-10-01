@@ -12,3 +12,17 @@ class WordAnalyzer:
     def __init__(self, filepath):
         self._filepath = Path(filepath)
         self._frequencies = {}
+
+    def process_file(self):
+        try:
+            if not self._filepath.exists():
+                raise FileNotFoundError
+            table = str.maketrans("", "", string.punctuation)
+            with self._filepath.open(encoding="utf-8") as file:
+                for line in file:
+                    line = line.translate(table)
+                    line = line.lower()
+                    for word in line.split():
+                        self._frequencies[word] = self._frequencies.get(word, 0) + 1
+        except FileNotFoundError:
+            print(f"File not found: {self._filepath}")
