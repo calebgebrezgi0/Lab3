@@ -43,3 +43,29 @@ def main():
         "3": Path("treasure_island.txt"),
         "4": Path("monte_cristo.txt"),
     }
+
+    while True:
+        print("\n--- Word Analyzer ---")
+        print("Please select a file to analyze:")
+        for key, path in files.items():
+            print(f"{key}. {path.stem}")
+        print("5. Exit")
+
+        choice = input("\nEnter your choice (1-5): ")
+
+        if choice == "5":
+            print("Goodbye!")
+            break
+        elif choice in files:
+            analyzer = WordAnalyzer(files[choice])
+            if analyzer.process_file():
+                print(f"\nWord frequencies for {files[choice].stem}:\n")
+                analyzer.print_report()
+        else:
+            print("Invalid choice. Please select from 1-5.")
+
+        input("\nPress Enter to return to the menu...")
+
+
+if __name__ == "__main__":
+    main()
