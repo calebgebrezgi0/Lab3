@@ -28,3 +28,7 @@ class WordAnalyzer:
         except FileNotFoundError:
             print(f"Error: '{self._filepath}' was not found.")
             return False
+
+    def print_report(self):
+        for word in sorted(self._frequencies.keys()):
+            print(f"{word:<10} :: {self._frequencies[word]}")
